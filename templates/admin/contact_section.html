@@ -1,0 +1,257 @@
+<!-- 底部联系区域组件 -->
+<section class="py-20 bg-gradient-to-b from-gray-50 to-white">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">联系我们</h2>
+            <p class="text-gray-600">{{ site_config.get('contact_text', '如有购买或部署需求，请通过以下方式联系我') }}</p>
+        </div>
+        
+        <div class="grid md:grid-cols-1 gap-8 max-w-md mx-auto">
+            {# 微信咨询卡片 #}
+            <div class="wechat-card flex items-center justify-between gap-4 p-5 bg-white rounded-2xl border border-gray-200 cursor-pointer transition-all duration-300" onclick="openWechatModal()">
+                <div class="flex items-center gap-4">
+                    <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-green-100 to-green-50 flex items-center justify-center flex-shrink-0">
+                        <svg class="w-6 h-6 text-green-500" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M8.691 2.188C3.891 2.188 0 5.476 0 9.53c0 2.212 1.17 4.203 3.002 5.55a.59.59 0 01.213.665l-.39 1.48c-.019.07-.048.141-.048.213 0 .163.13.295.29.295a.326.326 0 00.167-.054l1.903-1.114a.864.864 0 01.717-.098 10.16 10.16 0 002.837.403c.276 0 .543-.027.811-.05-.857-2.578.157-4.972 1.932-6.446 1.703-1.415 3.882-1.98 5.853-1.838-.576-3.583-4.196-6.348-8.596-6.348zM5.785 5.991c.642 0 1.162.529 1.162 1.18a1.17 1.17 0 01-1.162 1.178A1.17 1.17 0 014.623 7.17c0-.651.52-1.18 1.162-1.18zm5.813 0c.642 0 1.162.529 1.162 1.18a1.17 1.17 0 01-1.162 1.178 1.17 1.17 0 01-1.162-1.178c0-.651.52-1.18 1.162-1.18zm3.348 2.956c-1.797-.052-3.746.512-5.28 1.786-1.72 1.428-2.687 3.72-1.78 6.22.942 2.453 3.666 4.229 6.884 4.229.826 0 1.622-.12 2.361-.336a.722.722 0 01.598.082l1.438.84a.272.272 0 00.14.047c.134 0 .24-.111.24-.247 0-.06-.023-.12-.037-.177l-.327-1.233a.582.582 0 01-.023-.156.49.49 0 01.201-.398C23.024 18.48 24 16.82 24 14.98c0-3.21-2.931-5.837-6.656-6.088V8.89c-.135-.002-.27-.024-.406-.024zm-2.53 3.274c.535 0 .969.44.969.982a.976.976 0 01-.969.983.976.976 0 01-.969-.983c0-.542.434-.982.97-.982zm4.844 0c.535 0 .969.44 .969.982a.976.976 0 01-.969.983.976.976 0 01-.969-.983c0-.542.434-.982.969-.982z"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-base font-semibold text-gray-900">微信咨询</h3>
+                        <p class="text-sm text-gray-500">扫码添加 · 1对1服务</p>
+                    </div>
+                </div>
+                <svg class="w-6 h-6 text-gray-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                </svg>
+            </div>
+        </div>
+        
+        {# 管理员编辑入口 #}
+        {% if is_admin %}
+        <div class="text-center mt-8">
+            <button class="btn btn-ghost text-sm" onclick="openConfigEditor()">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
+                </svg>
+                编辑联系方式
+            </button>
+        </div>
+        {% endif %}
+    </div>
+</section>
+
+{# 微信 Modal #}
+<div id="wechat-modal" class="wechat-modal">
+    <div class="wechat-modal-overlay" onclick="closeWechatModal()"></div>
+    <div class="wechat-modal-content" onclick="event.stopPropagation()">
+        <button class="wechat-modal-close" onclick="closeWechatModal()">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+        </button>
+        <div class="wechat-modal-body">
+            <div class="wechat-modal-icon">
+                <svg class="w-8 h-8 text-green-500" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M8.691 2.188C3.891 2.188 0 5.476 0 9.53c0 2.212 1.17 4.203 3.002 5.55a.59.59 0 01.213.665l-.39 1.48c-.019.07-.048.141-.048.213 0 .163.13.295.29.295a.326.326 0 00.167-.054l1.903-1.114a.864.864 0 01.717-.098 10.16 10.16 0 002.837.403c.276 0 .543-.027.811-.05-.857-2.578.157-4.972 1.932-6.446 1.703-1.415 3.882-1.98 5.853-1.838-.576-3.583-4.196-6.348-8.596-6.348zM5.785 5.991c.642 0 1.162.529 1.162 1.18a1.17 1.17 0 01-1.162 1.178A1.17 1.17 0 014.623 7.17c0-.651.52-1.18 1.162-1.18zm5.813 0c.642 0 1.162.529 1.162 1.18a1.17 1.17 0 01-1.162 1.178 1.17 1.17 0 01-1.162-1.178c0-.651.52-1.18 1.162-1.18zm3.348 2.956c-1.797-.052-3.746.512-5.28 1.786-1.72 1.428-2.687 3.72-1.78 6.22.942 2.453 3.666 4.229 6.884 4.229.826 0 1.622-.12 2.361-.336a.722.722 0 01.598.082l1.438.84a.272.272 0 00.14.047c.134 0 .24-.111.24-.247 0-.06-.023-.12-.037-.177l-.327-1.233a.582.582 0 01-.023-.156.49.49 0 01.201-.398C23.024 18.48 24 16.82 24 14.98c0-3.21-2.931-5.837-6.656-6.088V8.89c-.135-.002-.27-.024-.406-.024zm-2.53 3.274c.535 0 .969.44.969.982a.976.976 0 01-.969.983.976.976 0 01-.969-.983c0-.542.434-.982.97-.982zm4.844 0c.535 0 .969.44 .969.982a.976.976 0 01-.969.983.976.976 0 01-.969-.983c0-.542.434-.982.969-.982z"/>
+                </svg>
+            </div>
+            <h3 class="wechat-modal-title">扫码添加微信</h3>
+            <div class="wechat-modal-qr">
+                <img src="{{ site_config.get('wechat_qr', '/static/images/wechat-qr.jpg') }}" alt="微信二维码">
+            </div>
+            <p class="wechat-modal-hint">长按识别二维码添加好友</p>
+        </div>
+    </div>
+</div>
+
+<style>
+.wechat-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.1);
+    border-color: #86efac;
+}
+.wechat-card:active {
+    transform: translateY(-2px);
+}
+
+.wechat-modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    align-items: center;
+    justify-content: center;
+}
+.wechat-modal.active {
+    display: flex;
+}
+.wechat-modal-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+    backdrop-filter: blur(4px);
+}
+.wechat-modal-content {
+    position: relative;
+    background: white;
+    border-radius: 20px;
+    padding: 40px;
+    max-width: 360px;
+    width: 90%;
+    text-align: center;
+    animation: modalIn 0.3s ease;
+}
+@keyframes modalIn {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
+}
+.wechat-modal-close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: 32px;
+    height: 32px;
+    border: none;
+    background: #f3f4f6;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+}
+.wechat-modal-close:hover {
+    background: #e5e7eb;
+}
+.wechat-modal-close svg {
+    width: 18px;
+    height: 18px;
+    color: #6b7280;
+}
+.wechat-modal-icon {
+    width: 56px;
+    height: 56px;
+    background: linear-gradient(135deg, #dcfce7, #bbf7d0);
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+}
+.wechat-modal-title {
+    font-size: 20px;
+    font-weight: 600;
+    color: #1f2937;
+    margin-bottom: 24px;
+}
+.wechat-modal-qr {
+    background: #fafafa;
+    border-radius: 12px;
+    padding: 12px;
+    display: inline-block;
+}
+.wechat-modal-qr img {
+    width: 200px;
+    height: 200px;
+    object-fit: contain;
+}
+.wechat-modal-hint {
+    margin-top: 16px;
+    font-size: 14px;
+    color: #9ca3af;
+}
+</style>
+
+{# 联系信息编辑器 #}
+{% if is_admin %}
+<div id="config-modal" class="modal-overlay" onclick="closeConfigEditor()">
+    <div class="modal-content p-8 max-w-lg" onclick="event.stopPropagation()">
+        <div class="flex items-center justify-between mb-6">
+            <h3 class="text-xl font-bold text-gray-900">编辑联系方式</h3>
+            <button class="lightbox-close" onclick="closeConfigEditor()">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+            </button>
+        </div>
+        
+        <form id="config-form" onsubmit="saveConfig(event)">
+            <div class="space-y-4">
+                <div>
+                    <label class="block text-sm text-gray-600 mb-2">微信二维码图片链接</label>
+                    <input type="url" name="wechat_qr" value="{{ site_config.get('wechat_qr', '') }}" class="input" placeholder="/static/images/wechat-qr.jpg">
+                </div>
+                
+                <div>
+                    <label class="block text-sm text-gray-600 mb-2">联系说明文字</label>
+                    <textarea name="contact_text" class="input textarea" rows="2" placeholder="如有购买或部署需求，请通过以下方式联系我">{{ site_config.get('contact_text', '') }}</textarea>
+                </div>
+            </div>
+            
+            <div class="flex gap-4 mt-6">
+                <button type="button" class="flex-1 btn btn-secondary" onclick="closeConfigEditor()">取消</button>
+                <button type="submit" class="flex-1 btn btn-primary">保存</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endif %}
+
+<script>
+// 微信 Modal
+function openWechatModal() {
+    document.getElementById('wechat-modal').classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeWechatModal() {
+    document.getElementById('wechat-modal').classList.remove('active');
+    document.body.style.overflow = '';
+}
+
+// ESC 键关闭
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+        closeWechatModal();
+        closeConfigEditor();
+    }
+});
+
+// 联系方式编辑器
+function openConfigEditor() {
+    const modal = document.getElementById('config-modal');
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeConfigEditor() {
+    const modal = document.getElementById('config-modal');
+    modal.classList.remove('active');
+    document.body.style.overflow = '';
+}
+
+async function saveConfig(e) {
+    e.preventDefault();
+    const form = document.getElementById('config-form');
+    const formData = new FormData(form);
+    const data = Object.fromEntries(formData);
+    
+    try {
+        const res = await fetch('/admin/api/config', {
+            method: 'PUT',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(data)
+        });
+        
+        if (res.ok) {
+            showToast('保存成功');
+            closeConfigEditor();
+            setTimeout(() => location.reload(), 500);
+        } else {
+            showToast('保存失败', 'error');
+        }
+    } catch (err) {
+        showToast('保存失败: ' + err.message, 'error');
+    }
+}
+</script>

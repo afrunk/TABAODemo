@@ -1,0 +1,545 @@
+/**
+ * 主样式文件
+ * 极简主义 + 科技感设计
+ */
+
+/* ==================== 基础样式 ==================== */
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    overflow-x: hidden;
+}
+
+/* ==================== 滚动条样式 ==================== */
+
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #F3F4F6;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #D1D5DB;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #9CA3AF;
+}
+
+/* ==================== 导航栏样式（已移至 base.html 内联样式）==================== */
+
+/* 管理员徽章 */
+.admin-badge {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.08), rgba(139, 92, 246, 0.08));
+    border: 1px solid rgba(99, 102, 241, 0.2);
+    border-radius: 20px;
+    color: #6366F1;
+    font-size: 0.75rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.admin-badge:hover {
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.15), rgba(139, 92, 246, 0.15));
+    border-color: rgba(99, 102, 241, 0.4);
+}
+
+/* ==================== 卡片样式 ==================== */
+
+.project-card {
+    background: #FFFFFF;
+    border: 1px solid #E5E7EB;
+    border-radius: 16px;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.project-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 
+        0 20px 40px rgba(0, 0, 0, 0.08),
+        0 0 0 1px rgba(99, 102, 241, 0.1);
+    border-color: #D1D5DB;
+}
+
+.project-card .card-image {
+    position: relative;
+    overflow: hidden;
+}
+
+.project-card .card-image img {
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.project-card:hover .card-image img {
+    transform: scale(1.08);
+}
+
+.project-card .card-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(17, 24, 39, 0.8) 0%, transparent 50%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.project-card:hover .card-overlay {
+    opacity: 1;
+}
+
+/* ==================== 按钮样式 ==================== */
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 10px 20px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    border-radius: 10px;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    border: none;
+    outline: none;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #6366F1, #8B5CF6);
+    color: white;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(99, 102, 241, 0.3);
+}
+
+.btn-primary:active {
+    transform: translateY(0);
+}
+
+.btn-secondary {
+    background: #FFFFFF;
+    border: 1px solid #E5E7EB;
+    color: #374151;
+}
+
+.btn-secondary:hover {
+    background: #F9FAFB;
+    border-color: #D1D5DB;
+    color: #111827;
+}
+
+.btn-ghost {
+    background: transparent;
+    color: #6B7280;
+}
+
+.btn-ghost:hover {
+    background: #F3F4F6;
+    color: #111827;
+}
+
+/* ==================== 标签样式 ==================== */
+
+.tag {
+    display: inline-flex;
+    align-items: center;
+    padding: 4px 10px;
+    background: rgba(99, 102, 241, 0.08);
+    border: 1px solid rgba(99, 102, 241, 0.2);
+    border-radius: 20px;
+    font-size: 0.75rem;
+    color: #6366F1;
+    transition: all 0.2s ease;
+}
+
+.tag:hover {
+    background: rgba(99, 102, 241, 0.12);
+    border-color: rgba(99, 102, 241, 0.3);
+}
+
+.status-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 500;
+}
+
+.status-completed {
+    background: rgba(16, 185, 129, 0.08);
+    color: #10B981;
+    border: 1px solid rgba(16, 185, 129, 0.2);
+}
+
+.status-iterating {
+    background: rgba(245, 158, 11, 0.08);
+    color: #F59E0B;
+    border: 1px solid rgba(245, 158, 11, 0.2);
+}
+
+.status-deployable {
+    background: rgba(99, 102, 241, 0.08);
+    color: #6366F1;
+    border: 1px solid rgba(99, 102, 241, 0.2);
+}
+
+/* ==================== 表单样式 ==================== */
+
+.input {
+    width: 100%;
+    padding: 12px 16px;
+    background: #FFFFFF;
+    border: 1px solid #E5E7EB;
+    border-radius: 10px;
+    color: #111827;
+    font-size: 0.875rem;
+    transition: all 0.2s ease;
+}
+
+.input:focus {
+    outline: none;
+    border-color: #6366F1;
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+}
+
+.input::placeholder {
+    color: #9CA3AF;
+}
+
+.textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+.select {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%236B7280'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    background-size: 16px;
+    padding-right: 40px;
+}
+
+/* ==================== Flash 消息 ==================== */
+
+.flash-message {
+    padding: 12px 20px;
+    border-radius: 10px;
+    font-size: 0.875rem;
+    animation: slideIn 0.3s ease;
+}
+
+.flash-success {
+    background: rgba(16, 185, 129, 0.1);
+    border: 1px solid rgba(16, 185, 129, 0.2);
+    color: #10B981;
+}
+
+.flash-error {
+    background: rgba(239, 68, 68, 0.1);
+    border: 1px solid rgba(239, 68, 68, 0.2);
+    color: #EF4444;
+}
+
+.flash-info {
+    background: rgba(99, 102, 241, 0.1);
+    border: 1px solid rgba(99, 102, 241, 0.2);
+    color: #6366F1;
+}
+
+/* ==================== 动画 ==================== */
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes scaleIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes slide-up {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-slide-in {
+    animation: slideIn 0.3s ease;
+}
+
+.animate-fade-in {
+    animation: fadeIn 0.4s ease;
+}
+
+.animate-scale-in {
+    animation: scaleIn 0.3s ease;
+}
+
+/* ==================== 动画延迟 ==================== */
+
+.delay-100 { animation-delay: 100ms; }
+.delay-200 { animation-delay: 200ms; }
+.delay-300 { animation-delay: 300ms; }
+.delay-400 { animation-delay: 400ms; }
+.delay-500 { animation-delay: 500ms; }
+
+@keyframes bounce-slow {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-8px);
+    }
+}
+
+.animate-bounce-slow {
+    animation: bounce-slow 2s ease-in-out infinite;
+}
+
+/* ==================== 渐变背景 ==================== */
+
+.gradient-text {
+    background: linear-gradient(135deg, #6366F1, #8B5CF6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.gradient-border {
+    position: relative;
+}
+
+.gradient-border::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    padding: 1px;
+    border-radius: inherit;
+    background: linear-gradient(135deg, #6366F1, #8B5CF6);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+}
+
+/* ==================== Hero 区域 ==================== */
+
+.hero-glow {
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(99, 102, 241, 0.08) 0%, transparent 70%);
+    filter: blur(60px);
+    pointer-events: none;
+}
+
+/* ==================== 统计卡片 ==================== */
+
+.stat-card {
+    background: #FFFFFF;
+    border: 1px solid #E5E7EB;
+    border-radius: 16px;
+    padding: 24px;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.stat-card:hover {
+    border-color: rgba(99, 102, 241, 0.3);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+/* ==================== 分页样式 ==================== */
+
+.pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.pagination a,
+.pagination span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 40px;
+    height: 40px;
+    padding: 0 12px;
+    background: #FFFFFF;
+    border: 1px solid #E5E7EB;
+    border-radius: 10px;
+    color: #6B7280;
+    font-size: 0.875rem;
+    transition: all 0.2s ease;
+}
+
+.pagination a:hover {
+    background: #F9FAFB;
+    border-color: #D1D5DB;
+    color: #111827;
+}
+
+.pagination .active {
+    background: linear-gradient(135deg, #6366F1, #8B5CF6);
+    border-color: transparent;
+    color: white;
+}
+
+/* ==================== 模态框 ==================== */
+
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-content {
+    background: #FFFFFF;
+    border: 1px solid #E5E7EB;
+    border-radius: 20px;
+    width: 90%;
+    max-width: 800px;
+    max-height: 90vh;
+    overflow-y: auto;
+    transform: scale(0.95);
+    transition: transform 0.3s ease;
+}
+
+.modal-overlay.active .modal-content {
+    transform: scale(1);
+}
+
+/* ==================== 编辑器样式 ==================== */
+
+.editor-field {
+    margin-bottom: 24px;
+}
+
+.editor-field .field-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 8px;
+}
+
+.editor-field label {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #6B7280;
+}
+
+.btn-copy-prompt {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    background: rgba(99, 102, 241, 0.08);
+    border: 1px solid rgba(99, 102, 241, 0.2);
+    border-radius: 8px;
+    color: #6366F1;
+    font-size: 0.75rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-copy-prompt:hover {
+    background: rgba(99, 102, 241, 0.12);
+    border-color: rgba(99, 102, 241, 0.3);
+}
+
+/* ==================== Toast 提示 ==================== */
+
+.toast {
+    position: fixed;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%) translateY(100px);
+    padding: 12px 24px;
+    background: #111827;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    color: white;
+    font-size: 0.875rem;
+    z-index: 200;
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+
+.toast.show {
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
+}
+
+/* ==================== 响应式调整 ==================== */
+
+@media (max-width: 768px) {
+    .project-card:hover {
+        transform: translateY(-4px) scale(1.01);
+    }
+    
+    .modal-content {
+        width: 95%;
+        max-height: 85vh;
+        border-radius: 16px;
+    }
+}

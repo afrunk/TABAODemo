@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Afrunk Studio{% endblock %}</title>
+    <meta name="description" content="{% block meta_description %}Afrunk Studio - 专业编程技术团队{% endblock %}">
+    
+    {# SEO Open Graph #}
+    <meta property="og:title" content="{% block og_title %}Afrunk Studio{% endblock %}">
+    <meta property="og:type" content="website">
+    <link rel="canonical" href="{{ request.url }}">
+    
+    {# Fonts #}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    {# Tailwind CSS #}
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#F9FAFB',      /* 浅灰白背景 */
+                        secondary: '#F3F4F6',    /* 稍深灰 */
+                        card: '#FFFFFF',         /* 白色卡片 */
+                        hover: '#E5E7EB',        /* 悬停态 */
+                        accent: '#6366F1',        /* 主色蓝紫 */
+                        'accent-secondary': '#8B5CF6',
+                        'text-primary': '#111827',   /* 深色文字 */
+                        'text-secondary': '#6B7280', /* 次要文字 */
+                        'text-muted': '#9CA3AF',     /* 辅助文字 */
+                        success: '#10B981',
+                        warning: '#F59E0B',
+                        error: '#EF4444',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'PingFang SC', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'Fira Code', 'monospace'],
+                    },
+                }
+            }
+        }
+    </script>
+    
+    {# Custom styles #}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    
+    {% block extra_head %}{% endblock %}
+</head>
+    <body class="bg-gray-50 text-text-primary font-sans antialiased">
+    {# 导航栏 - 浅色高级极简风格 #}
+    <nav class="floating-navbar">
+        <div class="nav-inner">
+            {# 左侧：导航菜单 #}
+            <div class="nav-left">
+                <a href="{{ url_for('index') }}" class="nav-link {% if request.endpoint == 'index' %}active{% endif %}">首页</a>
+                <a href="{{ url_for('projects') }}" class="nav-link {% if request.endpoint == 'projects' %}active{% endif %}">项目</a>
+            </div>
+            
+            {# 中间：Logo #}
+            <div class="nav-center">
+                <a href="{{ url_for('index') }}" class="flex items-center gap-2">
+                    <img src="{{ url_for('static', filename='images/brand-avatar.png') }}" alt="Afrunk" class="logo">
+                    <span class="brand">Afrunk Studio</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+    
+    <style>
+        :root {
+            --brand-color: #f97316;
+        }
+        
+        body {
+            background: #f8fafc;
+            min-height: 100vh;
+        }
+        
+        .floating-navbar {
+            position: fixed;
+            top: 24px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000;
+        }
+        
+        .nav-inner {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 999px;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+            padding: 12px 32px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 64px;
+            min-width: 900px;
+            transition: all 0.25s ease;
+        }
+        
+        .nav-inner:hover {
+            box-shadow: 0 8px 28px rgba(0, 0, 0, 0.08);
+        }
+        
+        .nav-left {
+            display: flex;
+            gap: 8px;
+        }
+        
+        .nav-link {
+            font-size: 14px;
+            font-weight: 500;
+            color: #6B7280;
+            padding: 6px 14px;
+            border-radius: 9999px;
+            border: none;
+            text-decoration: none;
+            background: transparent;
+            transition: all 0.15s ease;
+        }
+        
+        .nav-link:hover {
+            color: #111827;
+            background: #F3F4F6;
+            transform: translateY(-1px);
+        }
+        
+        .nav-link.active {
+            color: #FFFFFF;
+            background: #111827;
+            font-weight: 500;
+        }
+        
+        .nav-link.active:hover {
+            background: #111827;
+            color: #FFFFFF;
+        }
+        
+        .nav-center {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .nav-center a {
+            color: #111827;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: opacity 0.2s ease;
+        }
+        
+        .nav-center a:hover {
+            opacity: 0.8;
+        }
+        
+        .brand {
+            font-weight: 600;
+            font-size: 16px;
+            letter-spacing: -0.01em;
+        }
+        
+        .logo {
+            width: 28px;
+            height: 28px;
+            border-radius: 8px;
+            object-fit: cover;
+        }
+        
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        
+        .nav-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 999px;
+            color: #9ca3af;
+            text-decoration: none;
+            transition: all 0.25s ease;
+        }
+        
+        .nav-icon:hover {
+            color: #6b7280;
+            background: rgba(0, 0, 0, 0.05);
+            transform: translateY(-1px);
+        }
+        
+        .nav-icon:active {
+            transform: scale(0.96);
+        }
+        
+        /* 滚动增强 */
+        .nav-inner.scrolled {
+            background: rgba(255, 255, 255, 0.95);
+        }
+        
+        /* 移动端适配 */
+        @media (max-width: 768px) {
+            .floating-navbar {
+                top: 12px;
+            }
+            
+            .nav-inner {
+                min-width: auto;
+                width: calc(100vw - 32px);
+                padding: 10px 16px;
+                gap: 12px;
+            }
+            
+            .nav-left {
+                display: none;
+            }
+            
+            .nav-center {
+                position: relative;
+                left: auto;
+                transform: none;
+            }
+            
+            .brand {
+                font-size: 15px;
+            }
+            
+            .nav-link-text {
+                font-size: 14px;
+                padding: 8px 10px;
+            }
+        }
+    </style>
+    
+    {# 主要内容区域 #}
+    <main>
+        {# Flash 消息 #}
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        <div class="fixed top-20 right-4 z-50 space-y-2">
+            {% for category, message in messages %}
+            <div class="flash-message flash-{{ category }} animate-slide-in">
+                {{ message }}
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+        {% endwith %}
+        
+        {% block content %}{% endblock %}
+    </main>
+    
+    {# 页脚 #}
+    <footer class="py-6">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <div class="flex items-center justify-center gap-2 mb-2">
+                <img src="{{ url_for('static', filename='images/brand-avatar.png') }}" alt="Afrunk Studio" class="w-5 h-5 rounded">
+                <span class="text-sm font-medium text-gray-600">Afrunk Studio</span>
+            </div>
+            <p class="text-text-muted text-sm text-gray-400">
+                &copy; {{ now.year }} Afrunk Studio.
+            </p>
+        </div>
+    </footer>
+    
+    {# JavaScript #}
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    
+    {% block extra_scripts %}{% endblock %}
+    
+    <script>
+        // 导航栏滚动效果
+        const navbar = document.querySelector('.nav-inner');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+        
+        // Flash 消息自动消失
+        setTimeout(() => {
+            document.querySelectorAll('.flash-message').forEach(msg => {
+                msg.style.opacity = '0';
+                setTimeout(() => msg.remove(), 300);
+            });
+        }, 3000);
+        
+        // 代码高亮初始化
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('pre code').forEach((block) => {
+                hljs.highlightElement(block);
+            });
+        });
+        
+        // Markdown 渲染
+        document.addEventListener('DOMContentLoaded', () => {
+            // 配置 marked.js
+            if (typeof marked !== 'undefined') {
+                marked.setOptions({
+                    highlight: function(code, lang) {
+                        if (typeof hljs !== 'undefined' && lang && hljs.getLanguage(lang)) {
+                            try {
+                                return hljs.highlight(code, { language: lang }).value;
+                            } catch (e) {}
+                        }
+                        return code;
+                    },
+                    breaks: true,
+                    gfm: true
+                });
+                
+                // 渲染所有 Markdown 内容
+                document.querySelectorAll('.markdown-content').forEach(el => {
+                    if (el.dataset.rendered !== 'true') {
+                        const content = el.innerHTML;
+                        el.innerHTML = marked.parse(content);
+                        el.dataset.rendered = 'true';
+                        
+                        // 高亮代码块
+                        el.querySelectorAll('pre code').forEach(block => {
+                            hljs.highlightElement(block);
+                        });
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>

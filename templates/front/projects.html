@@ -1,0 +1,123 @@
+{% extends "base.html" %}
+
+{% block title %}Projects - Afrunk Studio{% endblock %}
+
+{% block extra_head %}
+<style>
+.projects-page {
+  max-width: 1100px;
+  margin: 40px auto;
+  padding: 100px 24px 60px;
+}
+
+.projects-header {
+  margin-bottom: 32px;
+}
+
+.projects-header h1 {
+  font-size: 28px;
+  font-weight: 700;
+  color: #111;
+  letter-spacing: -0.5px;
+  margin-bottom: 8px;
+}
+
+.projects-header p {
+  font-size: 14px;
+  color: #888;
+}
+
+.projects-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+
+.project-card {
+  background: #fff;
+  border: 1px solid #eee;
+  border-radius: 14px;
+  padding: 18px;
+  max-width: 360px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  text-decoration: none;
+  display: block;
+  color: inherit;
+}
+
+.project-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.1);
+  border-color: #ddd;
+}
+
+.project-card h3 {
+  font-size: 16px;
+  font-weight: 600;
+  color: #111;
+  margin-bottom: 8px;
+}
+
+.project-card p {
+  font-size: 13px;
+  color: #666;
+  line-height: 1.6;
+  margin-bottom: 12px;
+}
+
+.project-card .card-arrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 13px;
+  color: #2563eb;
+  font-weight: 500;
+}
+
+.project-card .card-arrow span {
+  transition: transform 0.2s;
+}
+
+.project-card:hover .card-arrow span {
+  transform: translateX(4px);
+}
+
+.empty-state {
+  text-align: center;
+  padding: 60px 0;
+  color: #999;
+}
+
+.empty-state p {
+  font-size: 14px;
+}
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="projects-page">
+  <div class="projects-header">
+    <h1>Projects</h1>
+    <p>{{ projects|length if projects else 0 }} 个项目</p>
+  </div>
+
+  {% if projects %}
+  <div class="projects-grid">
+    {% for project in projects %}
+    <a href="{{ project.url }}" class="project-card">
+      <h3>{{ project.title }}</h3>
+      <p>{{ project.desc }}</p>
+      <div class="card-arrow">
+        查看详情 <span>→</span>
+      </div>
+    </a>
+    {% endfor %}
+  </div>
+  {% else %}
+  <div class="empty-state">
+    <p>暂无项目</p>
+  </div>
+  {% endif %}
+</div>
+{% endblock %}

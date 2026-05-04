@@ -1,0 +1,16 @@
+{
+  "demos": [
+    {
+      "id": "customer-dispatch-system",
+      "name": "客户智能分配管理系统",
+      "filename": "landing.html",
+      "description": "智能地域派单 · 超时自动重派 · 公海资源激活 · 多维数据洞察",
+      "tags": ["私有化部署", "数据管理", "自动化"],
+      "cover_image": "",
+      "featured": true,
+      "status": "可部署",
+      "price": "¥2,588",
+      "tech_stack": ["Flask", "MySQL", "Vue.js"]
+    }
+  ]
+}

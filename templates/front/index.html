@@ -1,0 +1,520 @@
+{% extends "base.html" %}
+
+{% block title %}Afrunk Studio - 专业编程技术团队{% endblock %}
+{% block meta_description %}Afrunk Studio 专注于技术落地和项目交付，提供编程开发、自动化工具、数据采集与分析、Web 系统等全流程服务。{% endblock %}
+
+{% block content %}
+{# ==================== Hero Section ==================== #}
+<section id="hero" class="relative">
+    {# Hero Intro - Sticky Brand Block #}
+    <div id="hero-intro" class="sticky top-0 h-screen flex items-center justify-center z-10" style="will-change: transform, opacity;">
+        {# 背景装饰光晕 #}
+        <div class="hidden lg:block absolute top-0 right-0 w-[800px] h-[800px] bg-gradient-to-br from-indigo-500/5 via-purple-500/3 to-transparent rounded-full blur-3xl -translate-y-1/3 translate-x-1/4"></div>
+        <div class="hidden lg:block absolute bottom-0 left-0 w-[600px] h-[600px] bg-gradient-to-tr from-purple-500/5 via-indigo-500/3 to-transparent rounded-full blur-3xl translate-y-1/3 -translate-x-1/4"></div>
+        
+        {# 品牌块 #}
+        <div id="hero-brand-block" class="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-8 px-4 transition-all duration-500 ease-out" style="will-change: transform, opacity;">
+            {# Logo #}
+            <div class="w-24 h-24 md:w-28 md:h-28 rounded-2xl bg-white border border-gray-200 shadow-xl flex items-center justify-center flex-shrink-0">
+                <img src="{{ url_for('static', filename='images/brand-logo.png') }}" alt="Afrunk Studio" class="w-16 h-16 md:w-20 md:h-20 object-contain">
+            </div>
+            
+            {# 品牌信息 #}
+            <div class="text-center md:text-left">
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 tracking-tight">Afrunk Studio</h1>
+                <p class="mt-2 text-base md:text-lg text-gray-500">专注项目落地与自动化解决方案</p>
+            </div>
+        </div>
+        
+        {# Scroll Hint #}
+        <div id="hero-scroll-hint" class="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 text-gray-300 transition-opacity duration-300">
+            <span class="text-[10px] tracking-widest uppercase">Scroll</span>
+            <svg class="w-4 h-4 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+            </svg>
+        </div>
+    </div>
+    
+    {# Hero Content #}
+    <div id="hero-content" class="relative">
+        <div class="max-w-3xl mx-auto px-4 md:px-8 py-24 md:py-32">
+            {# Logo 缩小版 #}
+            <div id="hero-logo-small" class="flex justify-center mb-6 opacity-0 translate-y-6 transition-all duration-500 ease-out">
+                <div class="w-12 h-12 rounded-xl bg-white border border-gray-200 shadow-sm flex items-center justify-center">
+                    <img src="{{ url_for('static', filename='images/brand-logo.png') }}" alt="Afrunk Studio" class="w-9 h-9 object-contain">
+                </div>
+            </div>
+            
+            {# 能力标签 #}
+            <div id="hero-tags" class="flex flex-wrap justify-center gap-2 mb-6 opacity-0 translate-y-6 transition-all duration-500 ease-out" style="transition-delay: 100ms">
+                <span class="px-3 py-1.5 text-xs font-medium text-gray-600 bg-white border border-gray-200 rounded-full">定制开发</span>
+                <span class="px-3 py-1.5 text-xs font-medium text-gray-600 bg-white border border-gray-200 rounded-full">项目交付</span>
+                <span class="px-3 py-1.5 text-xs font-medium text-gray-600 bg-white border border-gray-200 rounded-full">技术支持</span>
+            </div>
+            
+            {# 主标题 #}
+            <h2 id="hero-title" class="text-center text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight mb-4 opacity-0 translate-y-6 transition-all duration-500 ease-out" style="transition-delay: 200ms">
+                专业编程技术团队
+                <span class="block mt-1">专注<span class="bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">项目落地交付</span></span>
+            </h2>
+            
+            {# 分隔线 #}
+            <div id="hero-divider" class="flex justify-center mb-6 opacity-0 translate-y-6 transition-all duration-500 ease-out" style="transition-delay: 250ms">
+                <div class="w-12 h-1 bg-gradient-to-r from-indigo-500 via-purple-500 to-indigo-500 rounded-full"></div>
+            </div>
+            
+            {# 副标题 #}
+            <p id="hero-subtitle" class="text-center text-base md:text-lg text-gray-600 leading-relaxed mb-8 opacity-0 translate-y-6 transition-all duration-500 ease-out" style="transition-delay: 300ms">
+                把你的想法变成可用的系统与工具<br>
+                从需求分析到开发部署，我们帮你一站式解决
+            </p>
+            
+            {# 信任强化 #}
+            <div id="hero-trust" class="flex flex-wrap justify-center gap-x-5 gap-y-2 text-sm text-gray-500 mb-8 opacity-0 translate-y-6 transition-all duration-500 ease-out" style="transition-delay: 350ms">
+                <span class="flex items-center gap-1.5">
+                    <svg class="w-4 h-4 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                    </svg>
+                    定制开发
+                </span>
+                <span class="flex items-center gap-1.5">
+                    <svg class="w-4 h-4 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                    </svg>
+                    全流程交付
+                </span>
+                <span class="flex items-center gap-1.5">
+                    <svg class="w-4 h-4 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                    </svg>
+                    长期维护
+                </span>
+            </div>
+            
+            {# CTA 按钮 #}
+            <div id="hero-buttons" class="flex flex-col sm:flex-row items-center justify-center gap-3 opacity-0 translate-y-6 transition-all duration-500 ease-out" style="transition-delay: 400ms">
+                <a href="{{ url_for('projects') }}" class="w-full sm:w-auto flex items-center justify-center gap-2 px-6 py-3 bg-gray-900 text-white rounded-lg font-medium text-sm active:scale-[0.98] transition-all hover:bg-gray-800 hover:shadow-lg hover:-translate-y-0.5">
+                    <span>查看项目案例</span>
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                    </svg>
+                </a>
+                <a href="#services" class="w-full sm:w-auto flex items-center justify-center gap-2 px-6 py-3 bg-white text-gray-700 rounded-lg font-medium text-sm border border-gray-200 transition-all hover:border-gray-300 hover:bg-gray-50 hover:-translate-y-0.5">
+                    <span>获取解决方案</span>
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+// Hero Scroll Animation with Sticky
+(function() {
+    const hero = document.getElementById('hero');
+    const heroIntro = document.getElementById('hero-intro');
+    const brandBlock = document.getElementById('hero-brand-block');
+    const scrollHint = document.getElementById('hero-scroll-hint');
+    const content = document.getElementById('hero-content');
+    const logoSmall = document.getElementById('hero-logo-small');
+    const tags = document.getElementById('hero-tags');
+    const title = document.getElementById('hero-title');
+    const divider = document.getElementById('hero-divider');
+    const subtitle = document.getElementById('hero-subtitle');
+    const trust = document.getElementById('hero-trust');
+    const buttons = document.getElementById('hero-buttons');
+    
+    // Mobile: show content directly
+    if (window.innerWidth < 768) {
+        [logoSmall, tags, title, divider, subtitle, trust, buttons].forEach(el => {
+            if (el) {
+                el.style.opacity = '1';
+                el.style.transform = 'translateY(0)';
+            }
+        });
+        if (heroIntro) heroIntro.style.display = 'none';
+        if (scrollHint) scrollHint.style.display = 'none';
+        return;
+    }
+    
+    let ticking = false;
+    
+    function updateAnimation() {
+        if (!hero || !heroIntro) return;
+        
+        const scrollY = window.scrollY;
+        const heroHeight = hero.offsetHeight;
+        const viewportHeight = window.innerHeight;
+        
+        // Progress: 0 (top) to 1 (when intro fully scrolled past)
+        const introHeight = viewportHeight; // sticky section is 100vh
+        const progress = Math.min(scrollY / introHeight, 1);
+        
+        // Intro block animation
+        const scale = 1 - (progress * 0.35);
+        const translateY = progress * -80;
+        const opacity = 1 - progress;
+        
+        if (brandBlock) {
+            brandBlock.style.transform = `scale(${scale}) translateY(${translateY}px)`;
+            brandBlock.style.opacity = opacity;
+        }
+        
+        // Scroll hint fade out
+        if (scrollHint) {
+            scrollHint.style.opacity = Math.max(0, 1 - progress * 2);
+        }
+        
+        // Content reveal - starts when intro starts leaving viewport
+        if (progress > 0.15) {
+            const contentProgress = Math.min((progress - 0.15) / 0.4, 1);
+            const translateOffset = (1 - contentProgress) * 24;
+            
+            [logoSmall, tags, title, divider, subtitle, trust, buttons].forEach(el => {
+                if (el) {
+                    el.style.opacity = contentProgress;
+                    el.style.transform = `translateY(${translateOffset}px)`;
+                }
+            });
+        }
+        
+        ticking = false;
+    }
+    
+    window.addEventListener('scroll', () => {
+        if (!ticking) {
+            requestAnimationFrame(updateAnimation);
+            ticking = true;
+        }
+    }, { passive: true });
+    
+    // Initial
+    updateAnimation();
+})();
+</script>
+
+{# ==================== 服务模块 ==================== #}
+<section id="services" class="py-16 md:py-20 lg:py-24 bg-gray-50/50">
+    <div class="max-w-5xl mx-auto px-4 md:px-8 lg:px-12">
+        <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-3 text-center">我们的服务</h2>
+        <p class="text-base text-gray-500 text-center mb-10 lg:mb-14 max-w-lg mx-auto">专注于解决实际业务问题，提供可落地的一站式技术服务</p>
+        
+        <div class="grid md:grid-cols-3 gap-6 lg:gap-8">
+            {# 服务1：数据采集 #}
+            <div class="group p-6 lg:p-8 bg-white rounded-2xl border border-gray-200 hover:border-indigo-200 hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
+                <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center mb-5">
+                    <svg class="w-7 h-7 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4"></path>
+                    </svg>
+                </div>
+                <h3 class="text-lg font-semibold text-gray-900 mb-2">数据采集与爬虫</h3>
+                <p class="text-sm text-gray-500 leading-relaxed">抓取电商、平台或业务数据，支持定制规则与长期维护</p>
+            </div>
+            
+            {# 服务2：自动化工具 #}
+            <div class="group p-6 lg:p-8 bg-white rounded-2xl border border-gray-200 hover:border-purple-200 hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
+                <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-purple-50 to-purple-100 flex items-center justify-center mb-5">
+                    <svg class="w-7 h-7 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
+                    </svg>
+                </div>
+                <h3 class="text-lg font-semibold text-gray-900 mb-2">自动化工具开发</h3>
+                <p class="text-sm text-gray-500 leading-relaxed">用程序替代重复操作，提升效率，降低人工成本</p>
+            </div>
+            
+            {# 服务3：AI 工作流 #}
+            <div class="group p-6 lg:p-8 bg-white rounded-2xl border border-gray-200 hover:border-green-200 hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
+                <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-green-50 to-emerald-100 flex items-center justify-center mb-5">
+                    <svg class="w-7 h-7 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+                    </svg>
+                </div>
+                <h3 class="text-lg font-semibold text-gray-900 mb-2">AI 工作流搭建</h3>
+                <p class="text-sm text-gray-500 leading-relaxed">结合 GPT/AI，实现内容生成、数据处理与流程自动化</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+{# ==================== 解决方案 ==================== #}
+{% if categories %}
+<section class="py-16 md:py-20 lg:py-24 bg-white">
+    <div class="max-w-5xl mx-auto px-4 md:px-8 lg:px-12">
+        <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-3 text-center">可提供的解决方案</h2>
+        <p class="text-base text-gray-500 text-center mb-10 lg:mb-14 max-w-lg mx-auto">覆盖多种业务场景，按需定制</p>
+        
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-4 lg:gap-6">
+            {% for category in categories %}
+            <a href="{{ url_for('projects', category=category.name) }}" class="group p-5 lg:p-6 bg-gray-50 rounded-xl hover:bg-gray-100 hover:-translate-y-0.5 hover:shadow-md transition-all duration-200">
+                <div class="w-10 h-10 rounded-lg bg-white border border-gray-200 flex items-center justify-center mb-3 group-hover:border-indigo-200 transition-colors">
+                    <svg class="w-5 h-5 text-gray-400 group-hover:text-indigo-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                    </svg>
+                </div>
+                <h3 class="text-sm lg:text-base font-medium text-gray-700 group-hover:text-gray-900 transition-colors">{{ category.name }}</h3>
+            </a>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endif %}
+
+{# ==================== 项目案例 ==================== #}
+{% if projects %}
+<section class="py-16 md:py-20 lg:py-24 bg-gray-50/50">
+    <div class="max-w-5xl mx-auto px-4 md:px-8 lg:px-12">
+        <div class="flex items-center justify-between mb-10 lg:mb-14">
+            <div>
+                <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-1">项目案例</h2>
+                <p class="text-sm text-gray-500">经过验证的项目方案，可直接部署使用</p>
+            </div>
+            <a href="{{ url_for('projects') }}" class="text-sm font-medium text-indigo-600 hover:text-indigo-700">查看全部 →</a>
+        </div>
+        
+        <div class="flex flex-wrap gap-6">
+            {% for project in projects %}
+            <a href="{{ project.url }}" class="index-project-card">
+                <h3>{{ project.title }}</h3>
+                <p>{{ project.desc }}</p>
+                <div class="card-arrow">查看详情 <span>→</span></div>
+            </a>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endif %}
+
+{# ==================== 技术支持 ==================== #}
+<section id="tech" class="py-16 md:py-20 lg:py-24 bg-white">
+    <div class="max-w-5xl mx-auto px-4 md:px-8 lg:px-12">
+        <h2 class="text-xl md:text-2xl font-bold text-gray-900 mb-3 text-center">技术支持</h2>
+        <p class="text-sm text-gray-500 text-center mb-8 lg:mb-10 max-w-md mx-auto">我们使用成熟稳定的技术栈，确保项目长期可维护</p>
+        
+        <div class="text-center space-y-4">
+            <div>
+                <p class="text-xs text-gray-400 uppercase tracking-wider mb-2">技术栈支持</p>
+                <div class="flex flex-wrap justify-center gap-2">
+                    <span class="px-3 py-1.5 text-xs text-gray-600 bg-gray-100 rounded-full">Python</span>
+                    <span class="px-3 py-1.5 text-xs text-gray-600 bg-gray-100 rounded-full">Web开发</span>
+                    <span class="px-3 py-1.5 text-xs text-gray-600 bg-gray-100 rounded-full">自动化</span>
+                    <span class="px-3 py-1.5 text-xs text-gray-600 bg-gray-100 rounded-full">数据处理</span>
+                    <span class="px-3 py-1.5 text-xs text-gray-600 bg-gray-100 rounded-full">AI集成</span>
+                </div>
+            </div>
+            <div>
+                <p class="text-xs text-gray-400 uppercase tracking-wider mb-2">支持工具</p>
+                <p class="text-sm text-gray-500">Flask / FastAPI / Selenium / Playwright / Pandas / GPT</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+{# ==================== 联系我们 ==================== #}
+<section id="contact" class="py-16 md:py-20 lg:py-24 bg-gray-50/50">
+    <div class="max-w-xl mx-auto px-4">
+        <div class="text-center mb-8">
+            <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-3">需要项目合作或技术支持？</h2>
+            <p class="text-gray-500">添加微信，沟通具体需求</p>
+        </div>
+        
+        {# 微信咨询卡片 #}
+        <div id="wechat-card" class="wechat-card flex items-center justify-between gap-4 p-5 bg-white rounded-2xl border border-gray-200 cursor-pointer transition-all duration-300" onclick="openWechatModal()">
+            <div class="flex items-center gap-4">
+                <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-green-100 to-green-50 flex items-center justify-center flex-shrink-0">
+                    <svg class="w-6 h-6 text-green-500" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M8.691 2.188C3.891 2.188 0 5.476 0 9.53c0 2.212 1.17 4.203 3.002 5.55a.59.59 0 01.213.665l-.39 1.48c-.019.07-.048.141-.048.213 0 .163.13.295.29.295a.326.326 0 00.167-.054l1.903-1.114a.864.864 0 01.717-.098 10.16 10.16 0 002.837.403c.276 0 .543-.027.811-.05-.857-2.578.157-4.972 1.932-6.446 1.703-1.415 3.882-1.98 5.853-1.838-.576-3.583-4.196-6.348-8.596-6.348zM5.785 5.991c.642 0 1.162.529 1.162 1.18a1.17 1.17 0 01-1.162 1.178A1.17 1.17 0 014.623 7.17c0-.651.52-1.18 1.162-1.18zm5.813 0c.642 0 1.162.529 1.162 1.18a1.17 1.17 0 01-1.162 1.178 1.17 1.17 0 01-1.162-1.178c0-.651.52-1.18 1.162-1.18zm3.348 2.956c-1.797-.052-3.746.512-5.28 1.786-1.72 1.428-2.687 3.72-1.78 6.22.942 2.453 3.666 4.229 6.884 4.229.826 0 1.622-.12 2.361-.336a.722.722 0 01.598.082l1.438.84a.272.272 0 00.14.047c.134 0 .24-.111.24-.247 0-.06-.023-.12-.037-.177l-.327-1.233a.582.582 0 01-.023-.156.49.49 0 01.201-.398C23.024 18.48 24 16.82 24 14.98c0-3.21-2.931-5.837-6.656-6.088V8.89c-.135-.002-.27-.024-.406-.024zm-2.53 3.274c.535 0 .969.44.969.982a.976.976 0 01-.969.983.976.976 0 01-.969-.983c0-.542.434-.982.97-.982zm4.844 0c.535 0 .969.44 .969.982a.976.976 0 01-.969.983.976.976 0 01-.969-.983c0-.542.434-.982.969-.982z"/>
+                    </svg>
+                </div>
+                <div>
+                    <h3 class="text-base font-semibold text-gray-900">微信咨询</h3>
+                    <p class="text-sm text-gray-500">扫码添加 · 1对1服务</p>
+                </div>
+            </div>
+            <svg class="w-6 h-6 text-gray-400 group-hover:text-gray-600 transition-colors flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+            </svg>
+        </div>
+    </div>
+</section>
+
+{# 微信 Modal #}
+<div id="wechat-modal" class="wechat-modal">
+    <div class="wechat-modal-overlay" onclick="closeWechatModal()"></div>
+    <div class="wechat-modal-content" onclick="event.stopPropagation()">
+        <button class="wechat-modal-close" onclick="closeWechatModal()">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+        </button>
+        <div class="wechat-modal-body">
+            <div class="wechat-modal-icon">
+                <svg class="w-8 h-8 text-green-500" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M8.691 2.188C3.891 2.188 0 5.476 0 9.53c0 2.212 1.17 4.203 3.002 5.55a.59.59 0 01.213.665l-.39 1.48c-.019.07-.048.141-.048.213 0 .163.13.295.29.295a.326.326 0 00.167-.054l1.903-1.114a.864.864 0 01.717-.098 10.16 10.16 0 002.837.403c.276 0 .543-.027.811-.05-.857-2.578.157-4.972 1.932-6.446 1.703-1.415 3.882-1.98 5.853-1.838-.576-3.583-4.196-6.348-8.596-6.348zM5.785 5.991c.642 0 1.162.529 1.162 1.18a1.17 1.17 0 01-1.162 1.178A1.17 1.17 0 014.623 7.17c0-.651.52-1.18 1.162-1.18zm5.813 0c.642 0 1.162.529 1.162 1.18a1.17 1.17 0 01-1.162 1.178 1.17 1.17 0 01-1.162-1.178c0-.651.52-1.18 1.162-1.18zm3.348 2.956c-1.797-.052-3.746.512-5.28 1.786-1.72 1.428-2.687 3.72-1.78 6.22.942 2.453 3.666 4.229 6.884 4.229.826 0 1.622-.12 2.361-.336a.722.722 0 01.598.082l1.438.84a.272.272 0 00.14.047c.134 0 .24-.111.24-.247 0-.06-.023-.12-.037-.177l-.327-1.233a.582.582 0 01-.023-.156.49.49 0 01.201-.398C23.024 18.48 24 16.82 24 14.98c0-3.21-2.931-5.837-6.656-6.088V8.89c-.135-.002-.27-.024-.406-.024zm-2.53 3.274c.535 0 .969.44.969.982a.976.976 0 01-.969.983.976.976 0 01-.969-.983c0-.542.434-.982.97-.982zm4.844 0c.535 0 .969.44 .969.982a.976.976 0 01-.969.983.976.976 0 01-.969-.983c0-.542.434-.982.969-.982z"/>
+                </svg>
+            </div>
+            <h3 class="wechat-modal-title">扫码添加微信</h3>
+            <div class="wechat-modal-qr">
+                <img src="/static/images/wechat-qr.jpg" alt="微信二维码">
+            </div>
+            <p class="wechat-modal-hint">长按识别二维码添加好友</p>
+        </div>
+    </div>
+</div>
+
+<style>
+.index-project-card {
+  background: #fff;
+  border: 1px solid #eee;
+  border-radius: 14px;
+  padding: 18px;
+  max-width: 360px;
+  transition: all 0.25s ease;
+  text-decoration: none;
+  display: block;
+  color: inherit;
+}
+.index-project-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.1);
+  border-color: #ddd;
+}
+.index-project-card h3 {
+  font-size: 16px;
+  font-weight: 600;
+  color: #111;
+  margin-bottom: 8px;
+}
+.index-project-card p {
+  font-size: 13px;
+  color: #666;
+  line-height: 1.6;
+  margin-bottom: 12px;
+}
+.index-project-card .card-arrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 13px;
+  color: #2563eb;
+  font-weight: 500;
+}
+.index-project-card .card-arrow span {
+  transition: transform 0.2s;
+}
+.index-project-card:hover .card-arrow span {
+  transform: translateX(4px);
+}
+
+.wechat-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.1);
+    border-color: #86efac;
+}
+.wechat-card:active {
+    transform: translateY(-2px);
+}
+
+.wechat-modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    align-items: center;
+    justify-content: center;
+}
+.wechat-modal.active {
+    display: flex;
+}
+.wechat-modal-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+    backdrop-filter: blur(4px);
+}
+.wechat-modal-content {
+    position: relative;
+    background: white;
+    border-radius: 20px;
+    padding: 40px;
+    max-width: 360px;
+    width: 90%;
+    text-align: center;
+    animation: modalIn 0.3s ease;
+}
+@keyframes modalIn {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
+}
+.wechat-modal-close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: 32px;
+    height: 32px;
+    border: none;
+    background: #f3f4f6;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+}
+.wechat-modal-close:hover {
+    background: #e5e7eb;
+}
+.wechat-modal-close svg {
+    width: 18px;
+    height: 18px;
+    color: #6b7280;
+}
+.wechat-modal-icon {
+    width: 56px;
+    height: 56px;
+    background: linear-gradient(135deg, #dcfce7, #bbf7d0);
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+}
+.wechat-modal-title {
+    font-size: 20px;
+    font-weight: 600;
+    color: #1f2937;
+    margin-bottom: 24px;
+}
+.wechat-modal-qr {
+    background: #fafafa;
+    border-radius: 12px;
+    padding: 12px;
+    display: inline-block;
+}
+.wechat-modal-qr img {
+    width: 200px;
+    height: 200px;
+    object-fit: contain;
+}
+.wechat-modal-hint {
+    margin-top: 16px;
+    font-size: 14px;
+    color: #9ca3af;
+}
+</style>
+
+<script>
+function openWechatModal() {
+    document.getElementById('wechat-modal').classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+function closeWechatModal() {
+    document.getElementById('wechat-modal').classList.remove('active');
+    document.body.style.overflow = '';
+}
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeWechatModal();
+});
+</script>
+{% endblock %}
