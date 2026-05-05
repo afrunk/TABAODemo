@@ -99,11 +99,20 @@ TabaoDemo/
 
 ---
 
-## 六、快速启动
+## 六、快速启动（本地开发）
 
 ```bash
 # 进入项目目录
-cd e:/Code/IDEAS/TabaoDemo
+cd TABAODemo
+
+# 创建虚拟环境（推荐，避免依赖冲突）
+python3 -m venv venv
+
+# 激活虚拟环境（Linux/Mac）
+source venv/bin/activate
+
+# 激活虚拟环境（Windows）
+# venv\Scripts\activate
 
 # 安装依赖
 pip install -r requirements.txt
@@ -118,7 +127,79 @@ python app.py
 
 ---
 
-## 七、一句话总结
+## 七、服务器部署指南（使用 nohup 后台运行）
+
+本项目支持通过 `nohup` 命令在服务器上后台运行，适合需要公网访问或长期部署的场景。
+
+### 部署步骤
+
+```bash
+# 1. 进入项目目录
+cd /root/TABAODemo
+
+# 2. 创建虚拟环境（隔离项目依赖）
+python3 -m venv venv
+
+# 3. 激活虚拟环境
+source venv/bin/activate
+
+# 4. 安装项目依赖
+pip install -r requirements.txt
+
+# 5. 使用 nohup 后台启动服务
+#    - nohup: 防止进程被挂起，支持后台运行
+#    - python app.py: 启动 Flask 应用
+#    - > flask.log: 将标准输出重定向到日志文件
+#    - 2>&1: 将标准错误重定向到标准输出
+#    - &: 让命令在后台执行
+nohup python app.py > flask.log 2>&1 &
+
+# 6. 查看启动日志，确认服务正常运行
+tail -f flask.log
+```
+
+### 验证部署
+
+```bash
+# 检查服务是否运行
+ps aux | grep python | grep app.py
+
+# 本地访问测试
+curl http://localhost:5055
+
+# 公网访问（需开放服务器端口，默认为 5055）
+# http://你的服务器公网IP:5055
+```
+
+### 常用管理命令
+
+```bash
+# 停止服务
+pkill -f "python app.py"
+
+# 重启服务
+pkill -f "python app.py" && cd /root/TABAODemo && source venv/bin/activate && nohup python app.py > flask.log 2>&1 &
+
+# 查看实时日志
+tail -f /root/TABAODemo/flask.log
+
+# 查看完整日志
+cat /root/TABAODemo/flask.log
+```
+
+### 防火墙配置（如需公网访问）
+
+如果服务器公网无法访问，需要在云平台开放端口：
+
+| 云平台 | 配置位置 | 协议 | 端口 |
+|--------|----------|------|------|
+| 阿里云 | 安全组规则 | TCP | 5055 |
+| 腾讯云 | 安全组规则 | TCP | 5055 |
+| AWS | 安全组 | TCP | 5055 |
+
+---
+
+## 八、一句话总结
 
 > Afrunk Studio 项目展示平台 - 极简风格的团队项目展示站点。
 >
