@@ -11,6 +11,18 @@
       "status": "可部署",
       "price": "¥2,588",
       "tech_stack": ["Flask", "MySQL", "Vue.js"]
+    },
+    {
+      "id": "farm-machinery-pricing",
+      "name": "农机配件报价系统",
+      "filename": "X27landing.html",
+      "description": "商品集中管理 · 五家进货价自动比价 · 报价单一键生成 · 皮带型号智能匹配",
+      "tags": ["本地部署", "私有化", "自动化工具"],
+      "cover_image": "",
+      "featured": true,
+      "status": "可部署",
+      "price": "¥1,888",
+      "tech_stack": ["Python", "SQLite", "Flask"]
     }
   ]
 }

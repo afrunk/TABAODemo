@@ -1,0 +1,1660 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>农机配件报价系统 - 本地化商品管理与报价解决方案</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <style>
+    :root {
+      --primary: #2d7a2d;
+      --primary-dark: #1f5c1f;
+      --primary-light: #e8f5e8;
+      --accent: #3d9a3d;
+      --text-dark: #1a2e1a;
+      --text-body: #3d5c3d;
+      --text-muted: #6b7c6b;
+      --bg-white: #ffffff;
+      --bg-gray: #f7faf7;
+      --border: #d4e4d4;
+      --shadow-sm: 0 2px 8px rgba(45, 122, 45, 0.08);
+      --shadow-md: 0 8px 32px rgba(45, 122, 45, 0.12);
+      --shadow-hover: 0 16px 48px rgba(45, 122, 45, 0.18);
+      --radius: 12px;
+      --max-w: 1200px;
+    }
+
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+
+    body {
+      font-family: "PingFang SC", "Microsoft YaHei", "Helvetica Neue", Helvetica, Arial, sans-serif;
+      color: var(--text-body);
+      background: var(--bg-white);
+      line-height: 1.8;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      transition: box-shadow 0.3s;
+    }
+    nav.scrolled {
+      box-shadow: 0 2px 20px rgba(45, 122, 45, 0.08);
+    }
+    .nav-inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 24px;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-brand {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--primary);
+      letter-spacing: 0.5px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .nav-brand i {
+      font-size: 1.2rem;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      list-style: none;
+    }
+    .nav-links a {
+      text-decoration: none;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover {
+      color: var(--primary);
+    }
+    .nav-cta {
+      background: var(--primary);
+      color: #fff !important;
+      padding: 8px 20px;
+      border-radius: 6px;
+      font-weight: 600;
+      transition: background 0.2s, transform 0.15s !important;
+    }
+    .nav-cta:hover {
+      background: var(--primary-dark) !important;
+      color: #fff !important;
+      transform: translateY(-1px);
+    }
+    .hamburger {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 1.4rem;
+      color: var(--primary);
+      cursor: pointer;
+      padding: 4px;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 120px 24px 80px;
+      background: linear-gradient(165deg, #f0fff0 0%, #ffffff 40%, #f0fff0 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: "";
+      position: absolute;
+      top: -200px;
+      right: -200px;
+      width: 700px;
+      height: 700px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(45, 122, 45, 0.06) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero::after {
+      content: "";
+      position: absolute;
+      bottom: -150px;
+      left: -150px;
+      width: 500px;
+      height: 500px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(45, 122, 45, 0.04) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-inner {
+      max-width: 800px;
+      position: relative;
+      z-index: 1;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--primary-light);
+      color: var(--primary);
+      font-size: 0.82rem;
+      font-weight: 600;
+      padding: 6px 16px;
+      border-radius: 100px;
+      margin-bottom: 32px;
+      letter-spacing: 0.5px;
+      border: 1px solid rgba(45, 122, 45, 0.12);
+    }
+    .hero-badge i {
+      font-size: 0.75rem;
+    }
+    .hero h1 {
+      font-size: clamp(2.2rem, 5vw, 3.6rem);
+      font-weight: 800;
+      color: var(--text-dark);
+      line-height: 1.2;
+      margin-bottom: 20px;
+      letter-spacing: -0.5px;
+    }
+    .hero h1 span {
+      color: var(--primary);
+    }
+    .hero-sub {
+      font-size: clamp(1rem, 2vw, 1.2rem);
+      color: var(--text-muted);
+      margin-bottom: 48px;
+      line-height: 1.9;
+      font-weight: 400;
+    }
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--primary);
+      color: #fff;
+      padding: 14px 36px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1rem;
+      border: none;
+      cursor: pointer;
+      transition: background 0.25s, transform 0.2s, box-shadow 0.25s;
+      box-shadow: 0 4px 16px rgba(45, 122, 45, 0.3);
+    }
+    .btn-primary:hover {
+      background: var(--primary-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(45, 122, 45, 0.4);
+    }
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: transparent;
+      color: var(--primary);
+      padding: 13px 32px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1rem;
+      border: 2px solid rgba(45, 122, 45, 0.25);
+      cursor: pointer;
+      transition: border-color 0.25s, background 0.25s, transform 0.2s;
+    }
+    .btn-secondary:hover {
+      border-color: var(--primary);
+      background: var(--primary-light);
+      transform: translateY(-1px);
+    }
+    .hero-stats {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 48px;
+      margin-top: 64px;
+      padding-top: 48px;
+      border-top: 1px solid var(--border);
+      flex-wrap: wrap;
+    }
+    .hero-stat {
+      text-align: center;
+    }
+    .hero-stat-num {
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--primary);
+      line-height: 1;
+      display: block;
+    }
+    .hero-stat-label {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      margin-top: 6px;
+      display: block;
+      font-weight: 500;
+    }
+
+    /* ── SECTION COMMON ── */
+    section {
+      padding: 96px 24px;
+    }
+    .section-inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+    }
+    .section-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--primary);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    .section-label::before,
+    .section-label::after {
+      content: "";
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--primary);
+      border-radius: 2px;
+      opacity: 0.5;
+    }
+    .section-title {
+      font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+      font-weight: 800;
+      color: var(--text-dark);
+      line-height: 1.3;
+      margin-bottom: 16px;
+      letter-spacing: -0.3px;
+    }
+    .section-desc {
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      max-width: 600px;
+      line-height: 1.9;
+      margin-bottom: 56px;
+    }
+
+    /* ── FEATURES ── */
+    .features {
+      background: var(--bg-gray);
+    }
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 24px;
+    }
+    .feature-card {
+      background: var(--bg-white);
+      border-radius: var(--radius);
+      padding: 36px 32px;
+      border: 1px solid var(--border);
+      transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
+                  box-shadow 0.3s,
+                  border-color 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+    .feature-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .feature-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-hover);
+      border-color: rgba(45, 122, 45, 0.15);
+    }
+    .feature-card:hover::before {
+      opacity: 1;
+    }
+    .feature-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 12px;
+      background: var(--primary-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 24px;
+      transition: background 0.3s;
+    }
+    .feature-icon i {
+      font-size: 1.3rem;
+      color: var(--primary);
+    }
+    .feature-card:hover .feature-icon {
+      background: rgba(45, 122, 45, 0.12);
+    }
+    .feature-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--text-dark);
+      margin-bottom: 10px;
+      line-height: 1.4;
+    }
+    .feature-desc {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.85;
+    }
+    .feature-tag {
+      display: inline-block;
+      margin-top: 16px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--primary);
+      background: var(--primary-light);
+      padding: 3px 10px;
+      border-radius: 100px;
+      letter-spacing: 0.3px;
+    }
+
+    /* ── ADVANTAGES ── */
+    .advantages {
+      background: var(--bg-white);
+    }
+    .advantages-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+    }
+    .advantage-item {
+      padding: 40px 32px;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      background: linear-gradient(135deg, #f8fff8 0%, #ffffff 100%);
+      transition: border-color 0.3s, box-shadow 0.3s;
+      position: relative;
+    }
+    .advantage-item:hover {
+      border-color: rgba(45, 122, 45, 0.2);
+      box-shadow: var(--shadow-md);
+    }
+    .advantage-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 10px;
+      background: var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 24px;
+      box-shadow: 0 4px 16px rgba(45, 122, 45, 0.25);
+    }
+    .advantage-icon i {
+      font-size: 1.1rem;
+      color: #fff;
+    }
+    .advantage-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text-dark);
+      margin-bottom: 12px;
+      line-height: 1.4;
+    }
+    .advantage-desc {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      line-height: 1.9;
+    }
+    .advantage-highlight {
+      margin-top: 20px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .advantage-highlight i {
+      color: var(--primary);
+      font-size: 0.85rem;
+    }
+    .advantage-highlight span {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--primary);
+    }
+
+    /* ── SECURITY ── */
+    .security {
+      background: var(--bg-gray);
+    }
+    .security-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 20px;
+    }
+    .security-card {
+      background: var(--bg-white);
+      border-radius: var(--radius);
+      padding: 32px 28px;
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: flex-start;
+      gap: 20px;
+      transition: box-shadow 0.3s, transform 0.25s;
+    }
+    .security-card:hover {
+      box-shadow: var(--shadow-md);
+      transform: translateY(-3px);
+    }
+    .security-icon {
+      flex-shrink: 0;
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      background: rgba(45, 122, 45, 0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .security-icon i {
+      font-size: 1rem;
+      color: var(--primary);
+    }
+    .security-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text-dark);
+      margin-bottom: 6px;
+    }
+    .security-desc {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.8;
+    }
+
+    /* ── PROCESS / FLOW ── */
+    .process {
+      background: var(--bg-white);
+    }
+    .process-flow {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0;
+      flex-wrap: wrap;
+      position: relative;
+    }
+    .process-step {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      position: relative;
+      flex: 1;
+      min-width: 140px;
+      max-width: 200px;
+      padding: 0 16px;
+    }
+    .process-step-num {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--primary);
+      color: #fff;
+      font-size: 0.9rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 14px;
+      box-shadow: 0 4px 12px rgba(45, 122, 45, 0.3);
+      flex-shrink: 0;
+    }
+    .process-step-title {
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: var(--text-dark);
+      margin-bottom: 6px;
+    }
+    .process-step-desc {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+    .process-arrow {
+      font-size: 1.2rem;
+      color: var(--primary);
+      opacity: 0.35;
+      flex-shrink: 0;
+      margin-bottom: 20px;
+    }
+
+    /* ── CTA ── */
+    .cta {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+      text-align: center;
+      padding: 96px 24px;
+      position: relative;
+      overflow: hidden;
+    }
+    .cta::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      pointer-events: none;
+    }
+    .cta-inner {
+      position: relative;
+      z-index: 1;
+      max-width: 640px;
+      margin: 0 auto;
+    }
+    .cta h2 {
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 16px;
+      line-height: 1.3;
+    }
+    .cta p {
+      font-size: 1rem;
+      color: rgba(255, 255, 255, 0.75);
+      margin-bottom: 40px;
+      line-height: 1.8;
+    }
+    .btn-white {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #fff;
+      color: var(--primary);
+      padding: 14px 40px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1rem;
+      border: none;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    }
+    .btn-white:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #1a2e1a;
+      color: rgba(255, 255, 255, 0.5);
+      text-align: center;
+      padding: 40px 24px;
+      font-size: 0.82rem;
+      line-height: 1.8;
+    }
+    footer p {
+      letter-spacing: 0.3px;
+    }
+    footer .footer-divider {
+      width: 40px;
+      height: 2px;
+      background: rgba(45, 122, 45, 0.6);
+      margin: 16px auto;
+      border-radius: 2px;
+    }
+
+    /* ── ANIMATIONS ── */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── PRICING ── */
+    .pricing {
+      background: var(--bg-white);
+    }
+
+    /* 主价格卡片 */
+    .pricing-main {
+      background: linear-gradient(135deg, #f0fff0 0%, #e8f5e8 100%);
+      border: 1px solid rgba(45, 122, 45, 0.15);
+      border-radius: 20px;
+      padding: 52px 48px 44px;
+      text-align: center;
+      max-width: 640px;
+      margin: 0 auto 56px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 8px 40px rgba(45, 122, 45, 0.1);
+    }
+    .pricing-main::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+    }
+    .pricing-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--primary);
+      color: #fff;
+      font-size: 0.78rem;
+      font-weight: 700;
+      padding: 5px 14px;
+      border-radius: 100px;
+      margin-bottom: 28px;
+      letter-spacing: 0.5px;
+    }
+    .pricing-amount {
+      display: flex;
+      align-items: baseline;
+      justify-content: center;
+      gap: 4px;
+      margin-bottom: 12px;
+    }
+    .pricing-currency {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--primary);
+      align-self: flex-start;
+      margin-top: 8px;
+    }
+    .pricing-num {
+      font-size: 4.5rem;
+      font-weight: 900;
+      color: var(--text-dark);
+      line-height: 1;
+      letter-spacing: -2px;
+    }
+    .pricing-unit {
+      font-size: 1rem;
+      color: var(--text-muted);
+      font-weight: 500;
+      align-self: flex-end;
+      margin-bottom: 6px;
+    }
+    .pricing-desc {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-bottom: 36px;
+    }
+    .pricing-includes {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      text-align: left;
+      max-width: 380px;
+      margin: 0 auto;
+    }
+    .pricing-include-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.9rem;
+      color: var(--text-body);
+    }
+    .pricing-include-item i {
+      color: var(--primary);
+      font-size: 0.85rem;
+      flex-shrink: 0;
+    }
+
+    /* 三列明细卡片 */
+    .pricing-detail-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .pricing-detail-card {
+      background: var(--bg-gray);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 32px 28px;
+      transition: box-shadow 0.3s, transform 0.25s;
+    }
+    .pricing-detail-card:hover {
+      box-shadow: var(--shadow-md);
+      transform: translateY(-3px);
+    }
+    .pricing-detail-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      background: var(--primary-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+    .pricing-detail-icon i {
+      font-size: 1rem;
+      color: var(--primary);
+    }
+    .pricing-detail-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text-dark);
+      margin-bottom: 10px;
+    }
+    .pricing-detail-body {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.85;
+      margin-bottom: 16px;
+    }
+    .pricing-tip {
+      display: flex;
+      align-items: flex-start;
+      gap: 7px;
+      background: rgba(45, 122, 45, 0.05);
+      border-radius: 8px;
+      padding: 10px 12px;
+      border-left: 3px solid rgba(45, 122, 45, 0.2);
+    }
+    .pricing-tip i {
+      color: var(--primary);
+      font-size: 0.8rem;
+      margin-top: 2px;
+      flex-shrink: 0;
+    }
+    .pricing-tip span {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+    .pricing-tip strong {
+      color: var(--primary);
+      font-weight: 700;
+    }
+
+    /* ── PURCHASE GUIDE ── */
+    .guide {
+      background: var(--bg-gray);
+    }
+    .guide-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      margin-bottom: 32px;
+    }
+    .guide-block {
+      background: var(--bg-white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 36px 32px;
+      transition: box-shadow 0.3s;
+    }
+    .guide-block:hover {
+      box-shadow: var(--shadow-md);
+    }
+    .guide-block-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 28px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--border);
+    }
+    .guide-block-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 10px;
+      background: var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      box-shadow: 0 4px 14px rgba(45, 122, 45, 0.25);
+    }
+    .guide-block-icon i {
+      font-size: 0.95rem;
+      color: #fff;
+    }
+    .guide-block-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text-dark);
+    }
+    .guide-block-body {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .guide-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+    }
+    .guide-item-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      background: var(--primary-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .guide-item-icon i {
+      font-size: 0.85rem;
+      color: var(--primary);
+    }
+    .guide-item-title {
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: var(--text-dark);
+      margin-bottom: 4px;
+    }
+    .guide-item-desc {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.8;
+    }
+    /* 安全提示卡片 */
+    .guide-note {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      background: rgba(45, 122, 45, 0.04);
+      border: 1px solid rgba(45, 122, 45, 0.12);
+      border-radius: 10px;
+      padding: 16px 18px;
+    }
+    .guide-note > i {
+      color: var(--primary);
+      font-size: 0.95rem;
+      margin-top: 2px;
+      flex-shrink: 0;
+    }
+    .guide-note-title {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 5px;
+    }
+    .guide-note-body {
+      font-size: 0.83rem;
+      color: var(--text-muted);
+      line-height: 1.8;
+    }
+    .guide-note-body strong {
+      color: var(--text-body);
+    }
+    /* 底部提醒条 */
+    .guide-footer-note {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: linear-gradient(90deg, rgba(45, 122, 45, 0.06), rgba(45, 122, 45, 0.03));
+      border: 1px solid rgba(45, 122, 45, 0.1);
+      border-radius: 10px;
+      padding: 16px 24px;
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+    .guide-footer-note i {
+      color: var(--primary);
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+    .guide-footer-note span {
+      flex: 1;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1024px) {
+      .advantages-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 64px;
+        left: 0;
+        right: 0;
+        background: #fff;
+        flex-direction: column;
+        padding: 16px 24px 24px;
+        border-bottom: 1px solid var(--border);
+        gap: 16px;
+        box-shadow: 0 8px 24px rgba(45, 122, 45, 0.1);
+      }
+      .nav-links.open {
+        display: flex;
+      }
+      .hamburger {
+        display: block;
+      }
+      .advantages-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+      .process-arrow {
+        display: none;
+      }
+      .process-flow {
+        gap: 32px;
+      }
+      .hero-stats {
+        gap: 24px;
+      }
+      section {
+        padding: 64px 20px;
+      }
+      .cta {
+        padding: 64px 20px;
+      }
+      .pricing-detail-grid {
+        grid-template-columns: 1fr;
+      }
+      .guide-grid {
+        grid-template-columns: 1fr;
+      }
+      .pricing-main {
+        padding: 36px 24px 32px;
+      }
+    }
+    @media (max-width: 480px) {
+      .features-grid {
+        grid-template-columns: 1fr;
+      }
+      .security-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Smooth mobile nav overlay */
+    .nav-links.open + .hamburger-overlay {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav id="navbar">
+    <div class="nav-inner">
+      <div class="nav-brand">
+        <i class="fa-solid fa-tractor"></i>
+        农机配件报价系统
+      </div>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#features">核心功能</a></li>
+        <li><a href="#advantages">核心优势</a></li>
+        <li><a href="#security">数据安全</a></li>
+        <li><a href="#process">使用流程</a></li>
+        <li><a href="#pricing">费用说明</a></li>
+        <li><a href="#guide">服务说明</a></li>
+        <li><a href="javascript:void(0)" onclick="openWechatModal()" class="nav-cta">咨询定制</a></li>
+      </ul>
+      <button class="hamburger" id="hamburger" aria-label="菜单">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="hero">
+    <div class="hero-inner">
+      <div class="hero-badge">
+        <i class="fa-solid fa-shield-halved"></i>
+        本地部署 · 数据自主可控
+      </div>
+      <h1>让农机配件报价<br><span>快人一步</span></h1>
+      <p class="hero-sub">
+        商品集中管理 · 五家进货价自动比价 · 报价单一键生成 · 皮带型号智能匹配<br>
+        一套系统，解决农机配件商家日常报价的所有痛点
+      </p>
+      <div class="hero-actions">
+        <a href="#contact" class="btn-primary">
+          <i class="fa-solid fa-paper-plane"></i>
+          咨询定制
+        </a>
+        <a href="#features" class="btn-secondary">
+          <i class="fa-solid fa-arrow-down"></i>
+          了解更多
+        </a>
+      </div>
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <span class="hero-stat-num">5家</span>
+          <span class="hero-stat-label">供应商价格同时维护</span>
+        </div>
+        <div class="hero-stat">
+          <span class="hero-stat-num">0</span>
+          <span class="hero-stat-label">云端数据中转</span>
+        </div>
+        <div class="hero-stat">
+          <span class="hero-stat-num">即装</span>
+          <span class="hero-stat-label">即用无需培训</span>
+        </div>
+        <div class="hero-stat">
+          <span class="hero-stat-num">1键</span>
+          <span class="hero-stat-label">报价单生成</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section class="features" id="features">
+    <div class="section-inner">
+      <div class="section-label">核心功能</div>
+      <h2 class="section-title">四大核心模块，覆盖农机配件业务全场景</h2>
+      <p class="section-desc">
+        从商品管理、进货价维护到报价单生成、皮带匹配查询，每一个环节都替您想到了，
+        让报价这件事从几分钟缩短到几秒钟。
+      </p>
+      <div class="features-grid">
+        <div class="feature-card fade-up">
+          <div class="feature-icon">
+            <i class="fa-solid fa-boxes-stacked"></i>
+          </div>
+          <h3 class="feature-title">商品集中管理</h3>
+          <p class="feature-desc">商品信息统一管理，支持图片、重量、分类、备注。CSV/Excel一键导入，不用一个个手工录。</p>
+          <span class="feature-tag">数据导入 · 批量操作</span>
+        </div>
+        <div class="feature-card fade-up">
+          <div class="feature-icon">
+            <i class="fa-solid fa-tags"></i>
+          </div>
+          <h3 class="feature-title">五家供应商比价</h3>
+          <p class="feature-desc">久鑫、大力、邢台、金谷、源头五家进货价同时维护，系统自动标出最低价，利润按最低成本算。</p>
+          <span class="feature-tag">自动比价 · 成本最优</span>
+        </div>
+        <div class="feature-card fade-up">
+          <div class="feature-icon">
+            <i class="fa-solid fa-file-invoice-dollar"></i>
+          </div>
+          <h3 class="feature-title">报价单一键生成</h3>
+          <p class="feature-desc">搜索商品、加数量，系统自动算总价、利润、重量。隐藏利润后截图，直接发微信给客户。</p>
+          <span class="feature-tag">快速响应 · 成交提速</span>
+        </div>
+        <div class="feature-card fade-up">
+          <div class="feature-icon">
+            <i class="fa-solid fa-belt"></i>
+          </div>
+          <h3 class="feature-title">皮带智能匹配</h3>
+          <p class="feature-desc">输入皮带型号，自动识别B/C型，换算Li/Ld/La长度，列出相近规格，不用人工查表对照。</p>
+          <span class="feature-tag">智能识别 · 自动换算</span>
+        </div>
+        <div class="feature-card fade-up">
+          <div class="feature-icon">
+            <i class="fa-solid fa-image"></i>
+          </div>
+          <h3 class="feature-title">商品图片管理</h3>
+          <p class="feature-desc">支持上传商品图片，核对商品时一目了然。本地存储，随用随查，不依赖外部图床。</p>
+          <span class="feature-tag">本地存储 · 安全可靠</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ADVANTAGES -->
+  <section class="advantages" id="advantages">
+    <div class="section-inner">
+      <div class="section-label">核心优势</div>
+      <h2 class="section-title">为什么选择本地部署方案</h2>
+      <p class="section-desc">
+        不是SaaS，不是订阅制。系统部署在您自己的电脑上，数据文件就在您手边，
+        没有月费、没有数据泄露风险，开箱即用。
+      </p>
+      <div class="advantages-grid">
+        <div class="advantage-item fade-up">
+          <div class="advantage-icon">
+            <i class="fa-solid fa-database"></i>
+          </div>
+          <h3 class="advantage-title">数据完全自主掌控</h3>
+          <p class="advantage-desc">
+            所有商品数据、报价记录、客户信息都存在您自己的电脑上，不经过任何第三方服务器，
+            数据主权100%归您所有，不用担心被泄露或滥用。
+          </p>
+          <div class="advantage-highlight">
+            <i class="fa-solid fa-check-circle"></i>
+            <span>本地SQLite数据库，无需月费</span>
+          </div>
+        </div>
+        <div class="advantage-item fade-up">
+          <div class="advantage-icon">
+            <i class="fa-solid fa-shield-halved"></i>
+          </div>
+          <h3 class="advantage-title">不用联网，数据更安全</h3>
+          <p class="advantage-desc">
+            本地运行，不依赖云端服务。即使断网也能正常使用，不用担心服务器宕机、
+            账号被封、数据丢失等问题，业务连续性有保障。
+          </p>
+          <div class="advantage-highlight">
+            <i class="fa-solid fa-check-circle"></i>
+            <span>离线可用，业务不中断</span>
+          </div>
+        </div>
+        <div class="advantage-item fade-up">
+          <div class="advantage-icon">
+            <i class="fa-solid fa-sliders"></i>
+          </div>
+          <h3 class="advantage-title">按需定制贴合业务</h3>
+          <p class="advantage-desc">
+            不是套模板的通用产品，是按农机配件行业实际业务流程设计的。
+            供应商配置、皮带换算规则、报价单格式，都贴合真实使用场景。
+          </p>
+          <div class="advantage-highlight">
+            <i class="fa-solid fa-check-circle"></i>
+            <span>行业定制，功能即所需</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECURITY -->
+  <section class="security" id="security">
+    <div class="section-inner">
+      <div class="section-label">数据安全</div>
+      <h2 class="section-title">本地化存储，数据风险最低</h2>
+      <p class="section-desc">
+        与云端SaaS不同，您的数据始终存储在自己可控的环境中，
+        不依赖任何外部服务，满足数据安全与隐私合规要求。
+      </p>
+      <div class="security-grid">
+        <div class="security-card fade-up">
+          <div class="security-icon">
+            <i class="fa-solid fa-hard-drive"></i>
+          </div>
+          <div>
+            <h3 class="security-title">本地文件存储</h3>
+            <p class="security-desc">商品数据、图片文件都存储在本地目录，备份只需复制文件夹，迁移方便。</p>
+          </div>
+        </div>
+        <div class="security-card fade-up">
+          <div class="security-icon">
+            <i class="fa-solid fa-database"></i>
+          </div>
+          <div>
+            <h3 class="security-title">SQLite轻量数据库</h3>
+            <p class="security-desc">采用SQLite数据库，文件即数据库，无需安装数据库软件，本地即可运行。</p>
+          </div>
+        </div>
+        <div class="security-card fade-up">
+          <div class="security-icon">
+            <i class="fa-solid fa-copy"></i>
+          </div>
+          <div>
+            <h3 class="security-title">备份迁移简单</h3>
+            <p class="security-desc">整个系统就是一个文件夹，复制粘贴即可备份，换电脑直接拷贝就能迁移。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section class="process" id="process">
+    <div class="section-inner">
+      <div class="section-label">使用流程</div>
+      <h2 class="section-title">三步上手，报价效率提升10倍</h2>
+      <p class="section-desc">
+        从安装到熟练使用，最快半天就能上手。没有复杂操作，符合日常使用习惯。
+      </p>
+      <div class="process-flow">
+        <div class="process-step fade-up">
+          <div class="process-step-num">1</div>
+          <div class="process-step-title">导入商品</div>
+          <div class="process-step-desc">把现有的Excel表格导入系统，一次搞定商品数据初始化</div>
+        </div>
+        <div class="process-arrow"><i class="fa-solid fa-chevron-right"></i></div>
+        <div class="process-step fade-up">
+          <div class="process-step-num">2</div>
+          <div class="process-step-title">录入价格</div>
+          <div class="process-step-desc">维护五家供应商的进货价，系统自动标注最低价来源</div>
+        </div>
+        <div class="process-arrow"><i class="fa-solid fa-chevron-right"></i></div>
+        <div class="process-step fade-up">
+          <div class="process-step-num">3</div>
+          <div class="process-step-title">快速报价</div>
+          <div class="process-step-desc">客户询价时搜索、加报价单、截图发客户，几秒钟搞定</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section class="pricing" id="pricing">
+    <div class="section-inner">
+      <div class="section-label">费用说明</div>
+      <h2 class="section-title">透明定价，无隐形费用</h2>
+      <p class="section-desc">
+        一次性买断，永久使用。不按月收费，不按功能收费，没有套路。
+      </p>
+
+      <!-- 主价格卡片 -->
+      <div class="pricing-main fade-up">
+        <div class="pricing-badge">
+          <i class="fa-solid fa-star"></i>
+          标准授权
+        </div>
+        <div class="pricing-amount">
+          <span class="pricing-currency">¥</span>
+          <span class="pricing-num">1,888</span>
+          <span class="pricing-unit">元 / 套</span>
+        </div>
+        <div class="pricing-desc">
+          含首年授权使用、系统部署及基础售后支持
+        </div>
+
+        <!-- 服务清单 -->
+        <div class="pricing-includes">
+          <div class="pricing-include-item">
+            <i class="fa-solid fa-check"></i>
+            <span>一次性买断，永久使用</span>
+          </div>
+          <div class="pricing-include-item">
+            <i class="fa-solid fa-check"></i>
+            <span>含一年免费售后支持，运行问题随时响应</span>
+          </div>
+          <div class="pricing-include-item">
+            <i class="fa-solid fa-check"></i>
+            <span>远程协助部署，本地电脑即可运行</span>
+          </div>
+          <div class="pricing-include-item">
+            <i class="fa-solid fa-check"></i>
+            <span>可按需提供功能定制扩展</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 下方三列说明 -->
+      <div class="pricing-detail-grid">
+        <div class="pricing-detail-card fade-up">
+          <div class="pricing-detail-icon">
+            <i class="fa-solid fa-laptop"></i>
+          </div>
+          <h3 class="pricing-detail-title">硬件要求</h3>
+          <p class="pricing-detail-body">
+            普通办公电脑即可运行，无需采购专用服务器。系统绿色轻量，不占资源。
+          </p>
+          <div class="pricing-tip">
+            <i class="fa-solid fa-circle-info"></i>
+            <span>推荐 Windows 10/11 系统，内存 4GB 以上</span>
+          </div>
+        </div>
+
+        <div class="pricing-detail-card fade-up">
+          <div class="pricing-detail-icon">
+            <i class="fa-solid fa-wrench"></i>
+          </div>
+          <h3 class="pricing-detail-title">增值服务</h3>
+          <p class="pricing-detail-body">
+            支持供应商名称修改、皮带型号规则调整、报价单格式定制等扩展需求。
+          </p>
+          <div class="pricing-tip">
+            <i class="fa-solid fa-circle-info"></i>
+            <span>定制化需求按实际工作量评估，报价透明</span>
+          </div>
+        </div>
+
+        <div class="pricing-detail-card fade-up">
+          <div class="pricing-detail-icon">
+            <i class="fa-solid fa-headset"></i>
+          </div>
+          <h3 class="pricing-detail-title">售后保障</h3>
+          <p class="pricing-detail-body">
+            购买后第一年内，针对系统运行问题提供免费技术支持，专人对接。
+          </p>
+          <div class="pricing-tip">
+            <i class="fa-solid fa-circle-info"></i>
+            <span>一年后如需续签维护服务，费用极低</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PURCHASE GUIDE -->
+  <section class="guide" id="guide">
+    <div class="section-inner">
+      <div class="section-label">服务说明</div>
+      <h2 class="section-title">交付流程与服务承诺</h2>
+      <p class="section-desc">
+        从购买到上手使用，全程有技术人员支持。不搞套路，有问题直接沟通。
+      </p>
+
+      <div class="guide-grid">
+        <!-- 左列：交付服务 -->
+        <div class="guide-block fade-up">
+          <div class="guide-block-header">
+            <div class="guide-block-icon">
+              <i class="fa-solid fa-handshake"></i>
+            </div>
+            <h3 class="guide-block-title">交付服务承诺</h3>
+          </div>
+          <div class="guide-block-body">
+            <div class="guide-item">
+              <div class="guide-item-icon">
+                <i class="fa-solid fa-laptop-code"></i>
+              </div>
+              <div>
+                <div class="guide-item-title">远程免费部署</div>
+                <div class="guide-item-desc">
+                  购买后由技术人员提供一次性免费远程部署服务，协助完成环境搭建与初始化配置。
+                </div>
+              </div>
+            </div>
+            <div class="guide-item">
+              <div class="guide-item-icon">
+                <i class="fa-solid fa-graduation-cap"></i>
+              </div>
+              <div>
+                <div class="guide-item-title">操作培训指导</div>
+                <div class="guide-item-desc">
+                  部署完成后进行一对一的系统操作培训，确保员工能独立上手使用。
+                </div>
+              </div>
+            </div>
+            <div class="guide-item">
+              <div class="guide-item-icon">
+                <i class="fa-solid fa-clock-rotate-left"></i>
+              </div>
+              <div>
+                <div class="guide-item-title">长期售后支持</div>
+                <div class="guide-item-desc">
+                  后续使用中遇到问题可随时联系技术人员，及时响应，不推诿。
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 右列：购买前准备 -->
+        <div class="guide-block fade-up">
+          <div class="guide-block-header">
+            <div class="guide-block-icon">
+              <i class="fa-solid fa-gear"></i>
+            </div>
+            <h3 class="guide-block-title">购买前准备</h3>
+          </div>
+          <div class="guide-block-body">
+            <div class="guide-item">
+              <div class="guide-item-icon">
+                <i class="fa-solid fa-computer"></i>
+              </div>
+              <div>
+                <div class="guide-item-title">准备一台电脑</div>
+                <div class="guide-item-desc">
+                  推荐使用 Windows 10/11 系统的台式机或笔记本，确保有稳定的电源和网络连接。
+                </div>
+              </div>
+            </div>
+            <div class="guide-item">
+              <div class="guide-item-icon">
+                <i class="fa-solid fa-file-excel"></i>
+              </div>
+              <div>
+                <div class="guide-item-title">整理商品数据</div>
+                <div class="guide-item-desc">
+                  提前整理好现有的商品表格（Excel/CSV格式），部署时可协助导入历史数据。
+                </div>
+              </div>
+            </div>
+            <div class="guide-note">
+              <i class="fa-solid fa-lightbulb"></i>
+              <div>
+                <div class="guide-note-title">提示</div>
+                <div class="guide-note-body">
+                  如现有商品数据格式不标准也不用担心，技术人员可协助进行数据清洗和格式转换。
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 底部提醒条 -->
+      <div class="guide-footer-note fade-up">
+        <i class="fa-solid fa-comments"></i>
+        <span>如有疑问，欢迎在咨询时与技术人员直接沟通，我们会根据您的实际业务情况给出最适合的建议方案。</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta" id="contact">
+    <div class="cta-inner">
+      <h2>立即咨询，获取专属方案</h2>
+      <p>技术人员直接对接，根据您的业务规模与实际需求，<br>提供一对一的产品演示与定制方案。</p>
+      <a href="javascript:void(0)" onclick="openWechatModal()" class="btn-white">
+        <i class="fa-solid fa-paper-plane"></i>
+        预约咨询
+      </a>
+    </div>
+  </section>
+
+  <!-- 微信弹窗 -->
+  <div id="wechat-modal" class="wechat-modal">
+    <div class="wechat-modal-overlay" onclick="closeWechatModal()"></div>
+    <div class="wechat-modal-content" onclick="event.stopPropagation()">
+      <button class="wechat-modal-close" onclick="closeWechatModal()">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+        </svg>
+      </button>
+      <div class="wechat-modal-body">
+        <div class="wechat-modal-icon">
+          <svg class="w-8 h-8 text-green-500" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M8.691 2.188C3.891 2.188 0 5.476 0 9.53c0 2.212 1.17 4.203 3.002 5.55a.59.59 0 01.213.665l-.39 1.48c-.019.07-.048.141-.048.213 0 .163.13.295.29.295a.326.326 0 00.167-.054l1.903-1.114a.864.864 0 01.717-.098 10.16 10.16 0 002.837.403c.276 0 .543-.027.811-.05-.857-2.578.157-4.972 1.932-6.446 1.703-1.415 3.882-1.98 5.853-1.838-.576-3.583-4.196-6.348-8.596-6.348zM5.785 5.991c.642 0 1.162.529 1.162 1.18a1.17 1.17 0 01-1.162 1.178A1.17 1.17 0 014.623 7.17c0-.651.52-1.18 1.162-1.18zm5.813 0c.642 0 1.162.529 1.162 1.18a1.17 1.17 0 01-1.162 1.178 1.17 1.17 0 01-1.162-1.178c0-.651.52-1.18 1.162-1.18zm3.348 2.956c-1.797-.052-3.746.512-5.28 1.786-1.72 1.428-2.687 3.72-1.78 6.22.942 2.453 3.666 4.229 6.884 4.229.826 0 1.622-.12 2.361-.336a.722.722 0 01.598.082l1.438.84a.272.272 0 00.14.047c.134 0 .24-.111.24-.247 0-.06-.023-.12-.037-.177l-.327-1.233a.582.582 0 01-.023-.156.49.49 0 01.201-.398C23.024 18.48 24 16.82 24 14.98c0-3.21-2.931-5.837-6.656-6.088V8.89c-.135-.002-.27-.024-.406-.024zm-2.53 3.274c.535 0 .969.44.969.982a.976.976 0 01-.969.983.976.976 0 01-.969-.983c0-.542.434-.982.97-.982zm4.844 0c.535 0 .969.44 .969.982a.976.976 0 01-.969.983.976.976 0 01-.969-.983c0-.542.434-.982.969-.982z"/>
+          </svg>
+        </div>
+        <h3 class="wechat-modal-title">扫码添加微信</h3>
+        <div class="wechat-modal-qr">
+          <img src="/static/images/wechat-qr.jpg" alt="微信二维码">
+        </div>
+        <p class="wechat-modal-hint">长按识别二维码添加好友</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 微信弹窗样式 -->
+  <style>
+    .wechat-modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      align-items: center;
+      justify-content: center;
+    }
+    .wechat-modal.active {
+      display: flex;
+    }
+    .wechat-modal-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.5);
+      backdrop-filter: blur(4px);
+    }
+    .wechat-modal-content {
+      position: relative;
+      background: white;
+      border-radius: 20px;
+      padding: 40px;
+      max-width: 360px;
+      width: 90%;
+      text-align: center;
+      animation: modalIn 0.3s ease;
+    }
+    @keyframes modalIn {
+      from { opacity: 0; transform: scale(0.9); }
+      to { opacity: 1; transform: scale(1); }
+    }
+    .wechat-modal-close {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      width: 32px;
+      height: 32px;
+      border: none;
+      background: #f3f4f6;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+    }
+    .wechat-modal-close:hover {
+      background: #e5e7eb;
+    }
+    .wechat-modal-close svg {
+      width: 18px;
+      height: 18px;
+      color: #6b7280;
+    }
+    .wechat-modal-icon {
+      width: 56px;
+      height: 56px;
+      background: linear-gradient(135deg, #dcfce7, #bbf7d0);
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+    }
+    .wechat-modal-title {
+      font-size: 20px;
+      font-weight: 600;
+      color: #1f2937;
+      margin-bottom: 24px;
+    }
+    .wechat-modal-qr {
+      background: #fafafa;
+      border-radius: 12px;
+      padding: 12px;
+      display: inline-block;
+    }
+    .wechat-modal-qr img {
+      width: 200px;
+      height: 200px;
+      object-fit: contain;
+    }
+    .wechat-modal-hint {
+      margin-top: 16px;
+      font-size: 14px;
+      color: #9ca3af;
+    }
+  </style>
+
+  <!-- 微信弹窗脚本 -->
+  <script>
+    function openWechatModal() {
+      document.getElementById('wechat-modal').classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeWechatModal() {
+      document.getElementById('wechat-modal').classList.remove('active');
+      document.body.style.overflow = '';
+    }
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') closeWechatModal();
+    });
+  </script>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>农机配件报价系统</p>
+    <div class="footer-divider"></div>
+    <p>本地部署 · 数据自主 · 永久使用 · 售后无忧</p>
+  </footer>
+
+  <!-- JS -->
+  <script>
+    // Navbar shadow on scroll
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 10);
+    });
+
+    // Mobile hamburger
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('navLinks');
+    hamburger.addEventListener('click', () => {
+      navLinks.classList.toggle('open');
+      const icon = hamburger.querySelector('i');
+      icon.className = navLinks.classList.contains('open')
+        ? 'fa-solid fa-xmark'
+        : 'fa-solid fa-bars';
+    });
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('open');
+        hamburger.querySelector('i').className = 'fa-solid fa-bars';
+      });
+    });
+
+    // Intersection Observer for fade-up
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, index) => {
+        if (entry.isIntersecting) {
+          const delay = Array.from(entry.target.parentElement.children)
+            .filter(el => el.classList.contains('fade-up'))
+            .indexOf(entry.target) * 100;
+          setTimeout(() => {
+            entry.target.classList.add('visible');
+          }, delay);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>

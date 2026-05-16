@@ -3,5 +3,10 @@
         "title": "客户智能分配管理系统",
         "desc": "智能地域派单 · 超时自动重派 · 公海资源激活 · 多维数据洞察",
         "url": "/demo/customer-dispatch-system"
+    },
+    {
+        "title": "农机配件报价系统",
+        "desc": "商品集中管理 · 五家进货价自动比价 · 报价单一键生成 · 皮带型号智能匹配",
+        "url": "/demo/farm-machinery-pricing"
     }
 ]
